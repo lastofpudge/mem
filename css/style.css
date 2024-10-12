@@ -888,6 +888,7 @@ body::after {
     width: calc(100% - 20px);
   }
 }
+.grid-item picture,
 .grid-item img {
   display: block;
   max-width: 100%;
