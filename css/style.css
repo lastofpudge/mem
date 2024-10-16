@@ -1464,6 +1464,11 @@ body::after {
   height: 2.375rem;
   border: 1px solid #6c757d;
   border-radius: 0.25rem;
+  font-family: "Helvetica Neue";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #6c757d;
 }
 
 .lines-add {

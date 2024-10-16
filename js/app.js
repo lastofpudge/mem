@@ -1724,6 +1724,130 @@
         __webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
         return module.exports;
     }
+    __webpack_require__.m = __webpack_modules__;
+    (() => {
+        __webpack_require__.f = {};
+        __webpack_require__.e = chunkId => Promise.all(Object.keys(__webpack_require__.f).reduce(((promises, key) => {
+            __webpack_require__.f[key](chunkId, promises);
+            return promises;
+        }), []));
+    })();
+    (() => {
+        __webpack_require__.u = chunkId => chunkId + ".app.js";
+    })();
+    (() => {
+        __webpack_require__.miniCssF = chunkId => {};
+    })();
+    (() => {
+        __webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+    })();
+    (() => {
+        var inProgress = {};
+        var dataWebpackPrefix = "fls-start:";
+        __webpack_require__.l = (url, done, key, chunkId) => {
+            if (inProgress[url]) {
+                inProgress[url].push(done);
+                return;
+            }
+            var script, needAttach;
+            if (key !== void 0) {
+                var scripts = document.getElementsByTagName("script");
+                for (var i = 0; i < scripts.length; i++) {
+                    var s = scripts[i];
+                    if (s.getAttribute("src") == url || s.getAttribute("data-webpack") == dataWebpackPrefix + key) {
+                        script = s;
+                        break;
+                    }
+                }
+            }
+            if (!script) {
+                needAttach = true;
+                script = document.createElement("script");
+                script.charset = "utf-8";
+                script.timeout = 120;
+                if (__webpack_require__.nc) script.setAttribute("nonce", __webpack_require__.nc);
+                script.setAttribute("data-webpack", dataWebpackPrefix + key);
+                script.src = url;
+            }
+            inProgress[url] = [ done ];
+            var onScriptComplete = (prev, event) => {
+                script.onerror = script.onload = null;
+                clearTimeout(timeout);
+                var doneFns = inProgress[url];
+                delete inProgress[url];
+                script.parentNode && script.parentNode.removeChild(script);
+                doneFns && doneFns.forEach((fn => fn(event)));
+                if (prev) return prev(event);
+            };
+            var timeout = setTimeout(onScriptComplete.bind(null, void 0, {
+                type: "timeout",
+                target: script
+            }), 12e4);
+            script.onerror = onScriptComplete.bind(null, script.onerror);
+            script.onload = onScriptComplete.bind(null, script.onload);
+            needAttach && document.head.appendChild(script);
+        };
+    })();
+    (() => {
+        __webpack_require__.r = exports => {
+            if (typeof Symbol !== "undefined" && Symbol.toStringTag) Object.defineProperty(exports, Symbol.toStringTag, {
+                value: "Module"
+            });
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+        };
+    })();
+    (() => {
+        __webpack_require__.p = "/";
+    })();
+    (() => {
+        var installedChunks = {
+            792: 0
+        };
+        __webpack_require__.f.j = (chunkId, promises) => {
+            var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : void 0;
+            if (installedChunkData !== 0) if (installedChunkData) promises.push(installedChunkData[2]); else if (true) {
+                var promise = new Promise(((resolve, reject) => installedChunkData = installedChunks[chunkId] = [ resolve, reject ]));
+                promises.push(installedChunkData[2] = promise);
+                var url = __webpack_require__.p + __webpack_require__.u(chunkId);
+                var error = new Error;
+                var loadingEnded = event => {
+                    if (__webpack_require__.o(installedChunks, chunkId)) {
+                        installedChunkData = installedChunks[chunkId];
+                        if (installedChunkData !== 0) installedChunks[chunkId] = void 0;
+                        if (installedChunkData) {
+                            var errorType = event && (event.type === "load" ? "missing" : event.type);
+                            var realSrc = event && event.target && event.target.src;
+                            error.message = "Loading chunk " + chunkId + " failed.\n(" + errorType + ": " + realSrc + ")";
+                            error.name = "ChunkLoadError";
+                            error.type = errorType;
+                            error.request = realSrc;
+                            installedChunkData[1](error);
+                        }
+                    }
+                };
+                __webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
+            }
+        };
+        var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+            var [chunkIds, moreModules, runtime] = data;
+            var moduleId, chunkId, i = 0;
+            if (chunkIds.some((id => installedChunks[id] !== 0))) {
+                for (moduleId in moreModules) if (__webpack_require__.o(moreModules, moduleId)) __webpack_require__.m[moduleId] = moreModules[moduleId];
+                if (runtime) runtime(__webpack_require__);
+            }
+            if (parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+            for (;i < chunkIds.length; i++) {
+                chunkId = chunkIds[i];
+                if (__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) installedChunks[chunkId][0]();
+                installedChunks[chunkId] = 0;
+            }
+        };
+        var chunkLoadingGlobal = self["webpackChunkfls_start"] = self["webpackChunkfls_start"] || [];
+        chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+        chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+    })();
     (() => {
         "use strict";
         function ssr_window_esm_isObject(obj) {
@@ -4849,81 +4973,6 @@
         window.addEventListener("load", (function(e) {
             initSliders();
         }));
-        const canvas = document.getElementById("canvas");
-        const dropArea = document.querySelector(".js-gen-front");
-        const genBack = document.querySelector(".js-gen-back");
-        const body = document.querySelector("body");
-        if (canvas) {
-            const createBlankButtons = document.querySelectorAll(".js-create-blank");
-            const ctx = canvas.getContext("2d");
-            createBlankButtons.forEach((button => {
-                button.addEventListener("click", (() => {
-                    canvas.width = 652;
-                    canvas.height = 667;
-                    ctx.fillStyle = "white";
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    dropArea.style.display = "none";
-                    genBack.style.display = "block";
-                    body.classList.add("generator-active");
-                }));
-            }));
-        }
-        const drag_and_drop_dropArea = document.querySelector(".js-gen-front");
-        const drag_and_drop_canvas = document.getElementById("canvas");
-        const fileElem = document.getElementById("js-file");
-        const uploadImageButtons = document.querySelectorAll(".js-upload-image");
-        const drag_and_drop_genBack = document.querySelector(".js-gen-back");
-        const drag_and_drop_body = document.querySelector("body");
-        if (drag_and_drop_canvas) {
-            const ctx = drag_and_drop_canvas.getContext("2d");
-            fileElem.addEventListener("change", (event => {
-                handleFiles(event.target.files);
-            }));
-            uploadImageButtons.forEach((button => {
-                button.addEventListener("click", (() => {
-                    fileElem.click();
-                }));
-            }));
-            if (drag_and_drop_dropArea) {
-                [ "dragenter", "dragover", "dragleave", "drop" ].forEach((eventName => {
-                    drag_and_drop_dropArea.addEventListener(eventName, preventDefaults, false);
-                }));
-                [ "dragenter", "dragover" ].forEach((eventName => {
-                    drag_and_drop_dropArea.addEventListener(eventName, (() => drag_and_drop_dropArea.classList.add("highlight")), false);
-                }));
-                [ "dragleave", "drop" ].forEach((eventName => {
-                    drag_and_drop_dropArea.addEventListener(eventName, (() => drag_and_drop_dropArea.classList.remove("highlight")), false);
-                }));
-                drag_and_drop_dropArea.addEventListener("drop", (e => {
-                    const dt = e.dataTransfer;
-                    const files = dt.files;
-                    if (!dt.types.includes("text/html")) handleFiles(files);
-                }));
-            }
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            function handleFiles(files) {
-                [ ...files ].forEach(previewFile);
-            }
-            function previewFile(file) {
-                const reader = new FileReader;
-                reader.readAsDataURL(file);
-                reader.onloadend = function() {
-                    const img = new Image;
-                    img.src = reader.result;
-                    img.onload = function() {
-                        drag_and_drop_canvas.width = img.width;
-                        drag_and_drop_canvas.height = img.height;
-                        ctx.drawImage(img, 0, 0, img.width, img.height);
-                        drag_and_drop_dropArea.style.display = "none";
-                        drag_and_drop_genBack.style.display = "block";
-                        drag_and_drop_body.classList.add("generator-active");
-                    };
-                };
-            }
-        }
         class SplitText {
             #options={
                 charClass: "aki__char",
@@ -8536,5 +8585,6 @@
             }));
         }
         window["FLS"] = true;
+        __webpack_require__.e(645).then(__webpack_require__.bind(__webpack_require__, 645));
     })();
 })();
