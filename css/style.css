@@ -1471,6 +1471,122 @@ body::after {
   margin-bottom: 1.5rem;
 }
 
+.meme-name {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 120%;
+}
+
+.checkers {
+  margin-bottom: 1.5rem;
+}
+
+.checker + .checker {
+  margin-top: 0.75rem;
+}
+.checker input {
+  display: none;
+}
+.checker label {
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.checker label .checker-item {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.25rem;
+  -webkit-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+.checker label .checker-item:before {
+  content: "";
+}
+.checker label span + span {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: inline-block;
+  font-family: "Helvetica Neue";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 150%;
+  margin-left: 0.5rem;
+}
+.checker label input:checked + span {
+  background: #f5487f;
+}
+.checker label input:checked + span:before {
+  content: "";
+}
+
+.get__controls {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.meme__controls__steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 1.5rem;
+}
+
+.meme__controls__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.meme__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  background: #ffffff;
+  border: 1px solid #6c757d;
+  border-radius: 0.25rem;
+}
+.meme__button + .meme__button {
+  margin-left: 0.75rem;
+}
+
 .line-add-button {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1558,6 +1674,11 @@ body::after {
   }
 }
 
+.generator-active .get__controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 .generator-active .step-3,
 .generator-active .step-2 {
   display: block;

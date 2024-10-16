@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#ffecd7">
 	<!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20241016064142">
+	<link rel="stylesheet" href="css/style.min.css?_v=20241016201254">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 </head>
 
@@ -34,6 +34,29 @@
 				<div class="page__info">
 					<div class="gen__items">
 						<h2 class="page__title page__title__mb">Meme generator</h1>
+							<div class="get__controls">
+								<div class="meme__controls__left">
+									<div class="meme-name"></div>
+								</div>
+								<div class="meme__controls__right">
+									<select name="spacing" class="js-select">
+										<option value="#" selected disabled>No Spacing</option>
+									</select>
+									<div class="meme__controls__steps">
+										<button class="meme__button js-prev-step">
+											<svg style="width: 1.125rem; height: 1.3125rem; fill: #6C757D;">
+												<use xlink:href="img/icons/icons.svg#control"></use>
+											</svg>
+										</button>
+										<button class="meme__button js-next-step meme__button__next">
+											<svg style="width: 1.125rem; height: 1.3125rem; fill: #6C757D;">
+												<use xlink:href="img/icons/icons.svg#control_next"></use>
+											</svg>
+										</button>
+									</div>
+								</div>
+
+							</div>
 							<div class="gen__content">
 								<div class="gen__left">
 									<label class="gen__front js-gen-front">
@@ -230,7 +253,13 @@
 														Add Text Line</button>
 												</div>
 												<div class="checkers">
-
+													<div class="checker">
+														<label>
+															<input type="checkbox" name="remove_watermark" class="checkox__checker js-remove-watermark">
+															<span class="checker-item"></span>
+															<span>Remove website watermark</span>
+														</label>
+													</div>
 												</div>
 												<div class="generate-links">
 													<button class="generate-button js-generate">Generate meme</button>
@@ -500,7 +529,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20241016064142"></script>
+	<script src="js/app.min.js?_v=20241016201254"></script>
 </body>
 
 </html>
