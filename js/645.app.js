@@ -3,6 +3,7 @@
 (self["webpackChunkfls_start"] = self["webpackChunkfls_start"] || []).push([ [ 645 ], {
     645: (__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
         __webpack_require__.r(__webpack_exports__);
+        var cropperjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(643);
         const dropArea = document.querySelector(".js-gen-front");
         const canvas = document.getElementById("canvas");
         const fileElem = document.getElementById("js-file");
@@ -10,7 +11,9 @@
         const genBack = document.querySelector(".js-gen-back");
         const body = document.querySelector("body");
         const textarea = document.querySelector(".step-text");
+        const cropperContainer = document.getElementById("cropper-container");
         let img;
+        let cropper;
         let text = "";
         let isDragging = false;
         let dragOffset = {
@@ -23,13 +26,15 @@
         };
         if (canvas) {
             const ctx = canvas.getContext("2d");
+            canvas.width = 652;
+            canvas.height = 667;
             function drawText() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = "white";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 if (img) ctx.drawImage(img, 0, 0, img.width, img.height);
                 ctx.fillStyle = "black";
-                ctx.font = "20px Arial";
+                ctx.font = "30px Arial";
                 ctx.fillText(text, textPosition.x, textPosition.y);
             }
             textarea.addEventListener("input", (event => {
@@ -75,17 +80,37 @@
                 const reader = new FileReader;
                 reader.readAsDataURL(file);
                 reader.onloadend = function() {
-                    const img = new Image;
-                    img.src = reader.result;
-                    img.onload = function() {
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        ctx.drawImage(img, 0, 0, img.width, img.height);
-                        window.updateImage(img);
-                        dropArea.style.display = "none";
-                        genBack.style.display = "block";
-                        body.classList.add("generator-active");
-                    };
+                    const imgElement = document.createElement("img");
+                    imgElement.src = reader.result;
+                    imgElement.style.maxWidth = "100%";
+                    cropperContainer.innerHTML = "";
+                    cropperContainer.appendChild(imgElement);
+                    const cropButton = document.createElement("button");
+                    cropButton.textContent = "Обрезать";
+                    cropButton.classList.add("crop-button");
+                    cropperContainer.appendChild(cropButton);
+                    dropArea.style.display = "none";
+                    genBack.style.display = "block";
+                    body.classList.add("generator-active");
+                    if (cropper) cropper.destroy();
+                    cropperContainer.classList.add("is-active");
+                    cropper = new cropperjs__WEBPACK_IMPORTED_MODULE_0__(imgElement, {
+                        viewMode: 1
+                    });
+                    cropButton.addEventListener("click", (() => {
+                        const croppedCanvas = cropper.getCroppedCanvas();
+                        canvas.width = croppedCanvas.width;
+                        canvas.height = croppedCanvas.height;
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(croppedCanvas, 0, 0, canvas.width, canvas.height);
+                        cropperContainer.innerHTML = "";
+                        cropperContainer.classList.remove("is-active");
+                        img = new Image;
+                        img.src = croppedCanvas.toDataURL();
+                        img.onload = function() {
+                            window.updateImage(img);
+                        };
+                    }));
                 };
             }
             const createBlankButtons = document.querySelectorAll(".js-create-blank");

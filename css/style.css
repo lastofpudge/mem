@@ -1476,6 +1476,38 @@ body::after {
   margin-bottom: 1.5rem;
 }
 
+#cropper-container {
+  position: relative;
+}
+#cropper-container.is-active + canvas {
+  display: none;
+}
+
+button.crop-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.375rem 0.75rem;
+  height: 2.375rem;
+  background: #f5487f;
+  border: 1px solid #f5487f;
+  border-radius: 0.25rem;
+  font-family: "Helvetica Neue";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #ffffff;
+}
+
 .meme-name {
   font-weight: 500;
   font-size: 1.5rem;
